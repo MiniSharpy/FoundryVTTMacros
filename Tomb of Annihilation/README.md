@@ -1,0 +1,1 @@
+Various macros created for use in the Dungeons and Dragon's 5E adventure "Tomb of Annihilation".
