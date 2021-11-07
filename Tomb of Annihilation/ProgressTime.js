@@ -3,7 +3,7 @@
 // and finally writes to chat the rough time.
 
 // This is so only the GM can see the results of the random encounter. 
-// This will still tip off even remotely observant players that a random encounter has occured as it is not hidden from them.
+// This will still tip off even remotely observant players that a random encounter has occured as they can see something is hidden from them.
 function privateGMMessage(message) 
 {
     let chatData = 
