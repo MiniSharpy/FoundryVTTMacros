@@ -83,7 +83,7 @@ else if(currentHour >= 12)
 }
 else
 {
-    currentHourDescription = "very late. Or early."
+    currentHourDescription = "very late."
 }
 
 ChatMessage.create(
