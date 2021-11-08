@@ -72,19 +72,19 @@ let currentHour = SimpleCalendar.api.timestampToDate(currentTimestamp).hour
 let currentHourDescription = " The time is... ";
 if(currentHour >= 20)
 {
-    currentHourDescription = "night"
+    currentHourDescription += "night"
 }
 else if(currentHour >= 16)
 {
-    currentHourDescription = "the evening"
+    currentHourDescription += "the evening"
 }
 else if(currentHour >= 12)
 {
-    currentHourDescription = "the afternoon"
+    currentHourDescription += "the afternoon"
 }
 else
 {
-    currentHourDescription = "very late."
+    currentHourDescription += "very late."
 }
 
 ChatMessage.create(
