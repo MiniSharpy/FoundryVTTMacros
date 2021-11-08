@@ -37,7 +37,7 @@ async function restInJungle()
 
     // Need to create nextLongRestTimestamp after "if/else" as the recorded timestamp will change after the "else".
     var nextLongRestTimestamp = parseInt(getJournal.data.content) + secondsInAdventuringDay; // This is why I hate dynamically typed langauges.
-    var nextLongRestDate = await americanDateToProperDate(SimpleCalendar.api.timestampToDate(nextLongRestTimestamp).display);
+    var nextLongRestDate = americanDateToProperDate(SimpleCalendar.api.timestampToDate(nextLongRestTimestamp).display);
     message += ` rest, and eat or drink. <br>The next long rest is on the ${nextLongRestDate}.</p>`;
 
     ChatMessage.create(

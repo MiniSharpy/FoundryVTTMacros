@@ -31,7 +31,8 @@ let locations =
 };
 
 let buttons = {};
-for (let location in locations) {
+for (let location in locations) 
+{
     buttons[location] = {
         label: location,
         callback: () => {
