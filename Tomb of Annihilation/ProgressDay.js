@@ -38,7 +38,7 @@ async function restInJungle()
     // Need to create nextLongRestTimestamp after "if/else" as the recorded timestamp will change after the "else".
     var nextLongRestTimestamp = parseInt(getJournal.data.content) + secondsInAdventuringDay; // This is why I hate dynamically typed langauges.
     var nextLongRestDate = americanDateToProperDate(SimpleCalendar.api.timestampToDate(nextLongRestTimestamp).display);
-    message += ` rest, and eat or drink. <br>The next long rest is on the ${nextLongRestDate}.</p>`;
+    message += ` rest, and eat or drink. ${await GenerateWeather()} <br>The next long rest is on the ${nextLongRestDate}.</p>`;
 
     ChatMessage.create(
         {
@@ -55,7 +55,7 @@ async function restOutOfJungle()
     ChatMessage.create(
         {
             user: game.user.id,
-            content: "8 hours have passed. Do a long rest.",
+            content: "8 hours have passed. Do a long rest, and eat or drink.",
         }
     );
 }
@@ -75,3 +75,32 @@ let locationDialogue = new Dialog({
        }
 });
 locationDialogue.render(true);
+
+// Changed the default roll table a little to better suit chult. 
+// No point bothering with temperature as it'll practically be the same most days anyway.
+// Returns the current weather as a string (Or a blank string in the case of no rain).
+async function GenerateWeather()
+{
+    let weatherRoll = (await new Roll("1d20").roll({async: true})).total;
+
+    if (weatherRoll < 4) // No rain
+    {
+        return "";   
+    }
+    else if (weatherRoll < 17) // Light rain
+    {
+        return "It is lightly raining."
+    }
+    else // Heavy Rain
+    {
+        let stormRoll = (await new Roll("1d4").roll({async: true})).total;
+        if (stormRoll === 1) 
+        {
+            return "A tropical storm is passing through the island."
+        }
+        else
+        {
+            return "It is raining heavily.";
+        }
+    }
+}
